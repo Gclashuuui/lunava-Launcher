@@ -193,3 +193,10 @@ input::-webkit-inner-spin-button {
     z-index: 1;
     pointer-events: all;
 }
+body {
+    background-image: url("assets/images/cave.jpg"); /* mets le vrai chemin de ton image ici */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
