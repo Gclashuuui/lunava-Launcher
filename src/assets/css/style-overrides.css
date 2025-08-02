@@ -1,0 +1,185 @@
+/*
+  style-overrides.css
+  Place this file after your existing CSS links in each HTML head:
+  <link rel="stylesheet" href="assets/css/style-overrides.css">
+  These rules will enhance visuals without touching your existing IDs and classes.
+*/
+
+/* 1. Global theme tokens & smoothing */
+:root {
+  --bg-blur: rgba(255, 255, 255, 0.12);
+  --panel-blur: rgba(255, 255, 255, 0.08);
+  --shadow-light: rgba(0, 0, 0, 0.15);
+  --shadow-heavy: rgba(0, 0, 0, 0.35);
+  --btn-gradient: linear-gradient(135deg, #7f5aff, #bb8bff);
+  --accent-green: #1dd760;
+  --accent-red: #ff4b4b;
+  --text-primary: #222;
+  --text-secondary: #555;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url('../images/background.jpg') center/cover no-repeat;
+}
+
+/* 2. Header bar */
+.header-bar,
+.server-status {
+  backdrop-filter: blur(16px);
+  background: var(--panel-blur);
+  box-shadow: 0 6px 20px var(--shadow-heavy);
+  border-radius: 12px;
+}
+.header-bar {
+  padding: 0.6rem 1.2rem;
+  margin: 1rem auto;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.server-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.server-status .status-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--accent-red);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* 3. Section titles */
+.section-title {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  margin: 1.5rem auto 1rem;
+  backdrop-filter: blur(12px);
+  background: var(--panel-blur);
+  border-radius: 24px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* 4. News panel */
+.news-panel {
+  backdrop-filter: blur(12px);
+  background: var(--panel-blur);
+  box-shadow: 0 8px 24px var(--shadow-heavy);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  margin: 0 auto;
+  max-width: 680px;
+  color: var(--text-secondary);
+  position: relative;
+}
+.news-panel.error {
+  border: 2px solid var(--accent-red);
+}
+.news-panel.error .error-title {
+  color: var(--accent-red);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.news-panel .date-label {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* 5. Discord icon button */
+.discord-button {
+  width: 64px;
+  height: 64px;
+  backdrop-filter: blur(12px);
+  background: var(--panel-blur);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px var(--shadow-light);
+  transition: transform 0.2s ease;
+}
+.discord-button:hover {
+  transform: scale(1.1);
+}
+
+/* 6. Bottom play bar */
+.bottom-bar {
+  backdrop-filter: blur(16px);
+  background: var(--panel-blur);
+  box-shadow: 0 -4px 16px var(--shadow-heavy);
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bottom-bar .play-button {
+  background: transparent;
+  border: 3px solid var(--accent-green);
+  border-radius: 12px;
+  padding: 0.4rem 1.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.bottom-bar .play-button:hover {
+  background: var(--accent-green);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* 7. Inputs and buttons reuse */
+button,
+.connect,
+.cancel,
+.popup-button,
+.play-btn,
+.theme-btn,
+.java-path-btn,
+.size-btn,
+.max-files-btn,
+.close-btn {
+  border-radius: 10px;
+}
+input[type=text],
+input[type=password],
+input[type=number] {
+  border-radius: 8px;
+}
+
+/* 8. Responsive tweaks */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .header-bar,
+  .news-panel {
+    width: 90% !important;
+  }
+  .bottom-bar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
